@@ -450,10 +450,10 @@ document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
 let map=null, layer=null, picked=null, pickMarker=null, filtro="todos";
 function initMap(){
   const mapEl=document.getElementById("map");
-  if(typeof L==="undefined"){ mapEl.innerHTML=
-  '<div style="padding:40px;text-align:center;color:#667085">No se pudo cargar el mapa. Revisa tu conexión a internet.</div>'; return; }
+  if(typeof L==="undefined"){ mapEl.innerHTML='<div style="padding:40px;text-align:center;color:#667085">No se pudo cargar el mapa. Revisa tu conexión a internet.</div>'; return; }
   map=L.map("map").setView([-16.51,-68.15],11);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+  layer=L.layerGroup().addTo(map);
   map.on("click",e=>{
     picked=e.latlng;
     if(pickMarker) map.removeLayer(pickMarker);
